@@ -11,19 +11,110 @@
 <body>
 
 <header>
-    <h1>To-do List App</h1>
+    <!-- brand logo -->
+    <h1>Goody To-do's</h1>
 </header>
 <aside>
-    <!-- Brand Logo -->
-
-    <a href="">View Projects</a>
-    <a href="">View All To-dos</a>
+    <section class="projects">
+        <h1>Projects</h1>
+        <ul class="projects-list">
+            <li class="project-id">
+                <button class="project-name" type="button">
+                    View All
+                    <span class="project-id-number-todos">
+                        200
+                    </span>
+                </button>
+            </li>
+            <li class="project-id">
+                <button class="project-name" type="button">
+                    Project 1
+                    <span class="project-id-number-todos">
+                        1
+                    </span>
+                </button>
+            </li>
+            <li class="project-id">
+                <button class="project-name" type="button">
+                    Project 2
+                    <span class="project-id-number-todos">
+                        4
+                    </span>
+                </button>
+            </li>
+            <li class="project-id">
+                <button class="project-name" type="button">
+                    Project 3
+                    <span class="project-id-number-todos">
+                        8
+                    </span>
+                </button>
+            </li>
+            <li class="project-id">
+                <button class="project-name" type="button">
+                    Project 4
+                    <span class="project-id-number-todos">
+                        12
+                    </span>
+                </button>
+            </li>
+        </ul>
+    </section>
+    <button>Add new</button>
 </aside>
 <main>
-    <h2>Project Name / All To-dos</h2>
-    <table>
-        <!-- V Title, Description, Due, Priority (Project) Remove -->
-    </table>
+    <section class="to-do-list">
+        <h1>To-do List</h1>
+        <table>
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <td></td>
+                    <th scope="col">Title</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Project</th>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></input></td>
+                    <td>Wash dishes</td>
+                    <td>09/08/2022</td>
+                    <td>Project 1</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></input></td>
+                    <td>Break Table</td>
+                    <td>16/08/2022</td>
+                    <td>Project 2</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Remove</button></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></input></td>
+                    <td>Clean Room</td>
+                    <td>01/09/2022</td>
+                    <td>Project 1</td>
+                    <td><button>Edit</button></td>
+                    <td><button>Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section hidden>
+        (FORM)
+    </section>
 </main>
 <footer>
     <p>made by sasha</p>
