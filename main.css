@@ -10,15 +10,15 @@ body {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 6fr;
-    grid-template-rows: 1fr 6fr auto;
+    grid-template-rows: 1fr 20fr 1fr;
 }
 
 header {
-    grid-area: 1/2/2/-1;
+    grid-area: 1/1/2/-1;
     background: red;
 }
 aside {
-    grid-area: 1/1/-2/2;
+    grid-area: 2/1/-2/2;
     background: blue;
 }
 main {
