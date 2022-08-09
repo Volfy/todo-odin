@@ -17,7 +17,7 @@ header {
     grid-area: 1/2/2/-1;
     background: red;
 }
-.left-sidebar {
+aside {
     grid-area: 1/1/-2/2;
     background: blue;
 }
