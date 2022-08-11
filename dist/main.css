@@ -76,17 +76,20 @@ aside {
 }
 hr {
     border-top: 1px solid var(--shadow-color);
+    height: 1px;
+    width: 100%;
 }
 .projects > h1 {
-    margin-top: 1.5em;
     text-align: left;
-    font-size: 1.2em;
+    font-size: 1.5em;
+    margin-bottom: 0.8em;
 }
 .projects, aside > button {
     margin: 1em;
+    margin-top: 2.2em;
 }
 .projects {
-    line-height: 2;
+    line-height: 1;
     width: 90%;
 }
 .project-no {
@@ -130,23 +133,31 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    margin: 1.5em;
+    font-size: 1.2em;
+}
+.to-do-list > h1 {
+    width: 100%;
+    font-size: 1.5em;
+    margin-bottom: 0.4em;
 }
 
 /* Table Stuff */
 table {
-    width: 95%;
+    width: 100%;
 }
 th, td {
     text-align: left;
 }
 .col-rmv, .col-chk, .col-edit {
-    width: 80px;
+    width: 3.33%;
 }
 .col-title {
     width: 65%;
 }
 .col-due {
-    width: 10%;
+    width: 15%;
 }
 .col-proj {
     width: 10%;
