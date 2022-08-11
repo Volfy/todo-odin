@@ -34,8 +34,8 @@ button {
     --main-color-1: #17255A;
     --main-color-2: #007EA7;
     --neutral-color: #EDE8ED;
+    --shadow-color: #26284b;
 }
-
 body {
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -53,6 +53,9 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    box-shadow: 0px 1px 8px var(--shadow-color);
+    z-index: 1;
 }
 header svg {
     margin: 1em;
