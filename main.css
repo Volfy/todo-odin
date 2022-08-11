@@ -215,3 +215,14 @@ tr td:nth-child(6) > button:hover {
 .col-proj {
     width: 10%;
 }
+/* form */
+.form-open {
+    display: flex;
+    z-index: 10;
+    background-color: aqua;
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    width: 20%;
+    flex-direction: column;
+}
