@@ -43,6 +43,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+/* ..Header */
 header {
     grid-area: 1/1/2/-1;
     background-color: var(--main-color-1);
@@ -52,15 +53,22 @@ header {
     flex-direction: row;
     align-items: center;
 }
+header svg {
+    margin: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 2.5em;
+}
 
 
+/* Side-bar */
 aside {
     grid-area: 2/1/-1/2;
     background-color: var(--main-color-2);
 }
 
 
-
+/* To-do list Section */
 main {
     grid-area: 2/2/-1/-1;
     background-color: var(--neutral-color);
@@ -70,6 +78,8 @@ main {
     flex-direction: column;
     align-items: center;
 }
+
+/* Table Stuff */
 table {
     width: 95%;
 }
