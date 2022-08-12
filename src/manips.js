@@ -8,6 +8,7 @@
 // Show Add New Form
 // Tab between to-do and Project form
 // Mark To-do as completed
+// List To-dos and Projects in level of priority?
 
 // TO-DO MANIPS
 
