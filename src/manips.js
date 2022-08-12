@@ -13,13 +13,65 @@
 
 
 
-// TO-DO MANIPS
-
 
 
 
 
 const DOMHandler = (() => {
+
+    // TO-DO MANIPS
+
+    const todo = (() => {
+        const table = document.querySelector('table tbody');
+
+        const add = (id, title, dueDate, projectName) => {
+            const newRow = table.insertRow();
+            newRow.dataset.num = id;
+
+            const newChk = newRow.insertCell(0);
+            const ChkIn = document.createElement('input');
+            ChkIn.type = 'checkbox';
+            ChkIn.dataset.num = id;
+            newChk.append(ChkIn);
+
+            const newTitle = newRow.insertCell(1);
+            newTitle.textContent = title;
+
+            const newDate = newRow.insertCell(2);
+            newDate.textContent = dueDate;
+
+            const newProject = newRow.insertCell(3);
+            newProject.textContent = projectName;
+
+            const newEdit = newRow.insertCell(4);
+            const EditBtn = document.createElement('button');
+            EditBtn.dataset.num = id;
+            EditBtn.classList.add('edit');
+            EditBtn.textContent = "Edit";
+            // Edit Event Listener
+            newEdit.append(EditBtn);
+
+
+            const newRmv = newRow.insertCell(5);
+            const RmvBtn = document.createElement('button');
+            RmvBtn.dataset.num = id;
+            RmvBtn.classList.add('rmv');
+            RmvBtn.textContent = "Remove";
+            // This should NOT directly call the DOM Manip. Otherwise
+            // the underlying To-do object will not be deleted!
+            RmvBtn.addEventListener('click', () => remove(id));
+
+            newRmv.append(RmvBtn);
+
+        };
+        const remove = id => {
+            const rowToRemove = document.querySelector(`tr[data-num='${id}']`);
+            rowToRemove.remove();
+        };
+
+        return {add, remove};
+
+    })();
 
     // PROJECT MANIPS
 
@@ -97,7 +149,7 @@ const DOMHandler = (() => {
 
 
 
-    return {updateViewAll, project, form};
+    return {todo, updateViewAll, project, form};
 
 })();
 
