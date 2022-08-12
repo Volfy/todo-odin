@@ -226,3 +226,35 @@ tr td:nth-child(6) > button:hover {
     width: 20%;
     flex-direction: column;
 }
+
+.add-form {
+    background-color: var(--form-bg-color);
+    padding: 20px;
+    border: 0.2px solid var(--shadow-color);
+    border-radius: 25px;
+    box-shadow: 4px 5px 12px var(--shadow-color);
+    text-align: left;
+}
+.add-form * {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.form-submit {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.8em;
+    border: 1px solid brown;
+    background-color: brown;
+    color: white;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.form-submit:hover {
+    color: brown;
+    background-color: white;
+    border: 1px solid white;
+    
+}
