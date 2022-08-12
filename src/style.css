@@ -172,9 +172,11 @@ tbody tr td:last-child {
     padding: 0.4em; 
 }
 
+tbody tr:hover {
+    box-shadow: 0px 11px 10px -14px var(--shadow-color);
+}
 tbody tr:hover td{
     background-color: var(--neutral-dark-color);
-    box-shadow: 0px 11px 10px -14px var(--shadow-color);
 }
 
 table button {
@@ -210,10 +212,10 @@ tr td:nth-child(6) > button:hover {
 /* ROWS WHICH ARE DONE! */
 .done td, .done:hover td{
     background-color: var(--neutral-dark-color);
-    box-shadow: none;
 }
-.done {
+.done, .done:hover {
     position: relative;
+    box-shadow: none;
 }
 .done::after {
     content: "";
