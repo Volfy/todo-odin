@@ -8,10 +8,7 @@
 // (DONE)Mark To-do as completed
 // (DONE)Tab between to-do and Project form
 // (DONE)Show Add New Form
-
-// Projects - refreshAll equivalent
-// List To-dos and Projects in level of priority?
-
+// (DONE)Projects - refreshAll equivalent
 
 const DOMHandler = (() => {
 
@@ -105,7 +102,7 @@ const DOMHandler = (() => {
             newRmv.append(RmvBtn);
 
         };
-        
+
         return {refreshAll};
 
     })();
@@ -119,8 +116,21 @@ const DOMHandler = (() => {
 
     const project = (() => {
         const projectsListElement = document.querySelector('.projects-list');
+
+        const refreshAll = projectArray => {
+            clearAll();
+            projectArray.forEach(projectObject => {
+                // destructure the object and IIFE it into add
+                (({id, name, tasks}) => 
+                add(id, name, tasks))(projectObject);
+            });
+        }
+        const clearAll = () => {
+            const projectListItems = document.querySelectorAll('li.project');
+            projectListItems.forEach(proj => proj.remove());
+        }
     
-        const add = (id, name, tasks = 0) => {
+        const add = (id, name, tasks) => {
             const newItem = document.createElement('li');
             const newBtn = document.createElement('button');
             const newDiv = document.createElement('div');
@@ -141,27 +151,30 @@ const DOMHandler = (() => {
             
             projectsListElement.append(newItem);
         };
-        const remove = id => {
-            const itemToRemove = document.querySelector(`#project-${id}`);
-            itemToRemove.remove();
-            _form.removeProject(id);
-        }
-        const update = (id, tasks) => {
-            const numberDiv = document.querySelector(`#project-${id} .project-no`);
-            numberDiv.textContent = tasks;
+
+        // I am not sure if these will be relevant later.
+
+        // const remove = id => {
+        //     const itemToRemove = document.querySelector(`#project-${id}`);
+        //     itemToRemove.remove();
+        //     _form.removeProject(id);
+        // }
+        // const update = (id, tasks) => {
+        //     const numberDiv = document.querySelector(`#project-${id} .project-no`);
+        //     numberDiv.textContent = tasks;
             
-        }
+        // }
     
-        // I am not sure if this is useful or correct.
-        const _updateName = (id, name) => {
-            const nameBtn = document.querySelector(`#project-${id} button`);
-            const numberDiv = document.querySelector(`#project-${id} .project-no`);
-            nameBtn.textContent = name;
-            nameBtn.append(numberDiv);
-            // formManips.addProject(id, name);
-        }
+        // // I am not sure if this is useful or correct.
+        // const _updateName = (id, name) => {
+        //     const nameBtn = document.querySelector(`#project-${id} button`);
+        //     const numberDiv = document.querySelector(`#project-${id} .project-no`);
+        //     nameBtn.textContent = name;
+        //     nameBtn.append(numberDiv);
+        //     // formManips.addProject(id, name);
+        // }
     
-        return {add, remove, update, updateViewAll}
+        return {refreshAll}
     })();
     
     // FORM MANIPS
@@ -178,6 +191,7 @@ const DOMHandler = (() => {
         const switchFormsTo = name => {
             const todoForm = document.querySelector('.add-todo');
             const projectForm = document.querySelector('.add-project');
+            // this implementation makes it easy to add, eg, a notes tab
             switch(name) {
                 case 'todo':
                     todoForm.classList.add('current');
@@ -198,17 +212,18 @@ const DOMHandler = (() => {
             newOption.textContent = name;
             projectOptionsList.append(newOption);
         }
-        const removeProject = id => {
-            const optionToRemove = document.querySelector(`option[value='project-${id}']`);
-            optionToRemove.remove();
-        }
-        return {addProject, removeProject, show, switchFormsTo};
+        // Not sure if will be relevant Later
+        // const removeProject = id => {
+        //     const optionToRemove = document.querySelector(`option[value='project-${id}']`);
+        //     optionToRemove.remove();
+        // }
+        return {addProject, show, switchFormsTo};
     })();
 
 
 
 
-    return {todo, updateViewAll, project, init};
+    return {init, project, todo, updateViewAll};
 
 })();
 

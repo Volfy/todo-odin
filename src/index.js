@@ -1,30 +1,21 @@
 import './style.css';
-import { DOMHandler} from './manips';
+import {DOMHandler} from './manips';
 
+// List To-dos and Projects in level of priority?
 
 // IMPORTS TESTING
 
-DOMHandler.init();
-
-DOMHandler.project.add(1, 'Jogn1', 1000);
-DOMHandler.project.add(2, 'Jogn2', 1000);
-DOMHandler.project.add(3, 'Jogn3', 1000);
-DOMHandler.project.add(4, 'Jogn4', 1000);
-DOMHandler.project.add(5, 'Jogn5', 1000);
-DOMHandler.project.add(6, 'Jogn6', 1000);
-
-DOMHandler.project.add(7, 'nonumber');
-DOMHandler.project.add(8, 'blablabla');
-
-DOMHandler.project.remove(5);
-DOMHandler.project.remove(1);
-
-DOMHandler.project.update(6, 22);
-DOMHandler.project.update(3, 2000);
-
-DOMHandler.updateViewAll(22);
-
 const todoMaker = ((id, title, dueDate, projectName, priority) => {return {id, title, dueDate, projectName, priority}});
+const projectMaker = ((id, name, tasks) => {return{id,name,tasks}});
+
+let projectList = [
+    projectMaker(1, 'jogn1', 1000),
+    projectMaker(2, 'jogn2', 300),
+    projectMaker(3, 'jogn3', 20),
+    projectMaker(4, 'jogn4', 0),
+    projectMaker(5, 'jogn5', 1),
+    projectMaker(6, 'jogn6', 19),
+]
 
 let todoList = [ 
     todoMaker(1,'hello','0/09/2020','godoe', 5),
@@ -34,4 +25,9 @@ let todoList = [
     todoMaker(5,'hello5','0/09/2020','godoe', 1),
 ];
 
+projectList[3].name = 'HAHA I CAN CHANGE';
+
+DOMHandler.init();
+DOMHandler.updateViewAll(22);
+DOMHandler.project.refreshAll(projectList);
 DOMHandler.todo.refreshAll(todoList);
