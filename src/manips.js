@@ -6,7 +6,7 @@
 // Tab between to-do and Project form
 // Mark To-do as completed
 
-const projectManips = (() => {
+const projectListElementManips = (() => {
     const projectsListElement = document.querySelector('.projects-list');
 
     const add = (id, name, tasks = 0) => {
@@ -51,4 +51,4 @@ const projectManips = (() => {
 
 
 
-export {projectManips};
+export {projectListElementManips};
