@@ -10,8 +10,6 @@
 // (DONE)Show Add New Form
 
 // Projects - refreshAll equivalent
-
-
 // List To-dos and Projects in level of priority?
 
 
@@ -23,13 +21,13 @@ const DOMHandler = (() => {
         const projectBtn = document.querySelector('#project-tab');
         const closeBtn = document.querySelector('#close-tab');
 
-        addNewBtn.addEventListener('click', form.show);
-        closeBtn.addEventListener('click', form.show);
+        addNewBtn.addEventListener('click', _form.show);
+        closeBtn.addEventListener('click', _form.show);
         todoBtn.addEventListener('click', () => {
-            form.switchFormsTo('todo');
+            _form.switchFormsTo('todo');
         });
         projectBtn.addEventListener("click", () => {
-            form.switchFormsTo('project');
+            _form.switchFormsTo('project');
         });
     };
 
@@ -107,14 +105,7 @@ const DOMHandler = (() => {
             newRmv.append(RmvBtn);
 
         };
-        // Not necessary.
-        const _remove = id => {
-            const rowToRemove = document.querySelector(`tr[data-num='${id}']`);
-            rowToRemove.remove();
-        };
-
-        // Adding/Removing To-dos from DOM is unnecessary.
-        // We can simply refreshAll.
+        
         return {refreshAll};
 
     })();
@@ -136,7 +127,7 @@ const DOMHandler = (() => {
     
             // ID generation should be handled in logic. 
             newItem.id = `project-${id}`;
-            form.addProject(id, name);
+            _form.addProject(id, name);
     
             newDiv.classList.add('project-no');
             newBtn.classList.add('project');
@@ -153,7 +144,7 @@ const DOMHandler = (() => {
         const remove = id => {
             const itemToRemove = document.querySelector(`#project-${id}`);
             itemToRemove.remove();
-            form.removeProject(id);
+            _form.removeProject(id);
         }
         const update = (id, tasks) => {
             const numberDiv = document.querySelector(`#project-${id} .project-no`);
@@ -175,7 +166,7 @@ const DOMHandler = (() => {
     
     // FORM MANIPS
     
-    const form = (() => {
+    const _form = (() => {
         const formSection = document.querySelector('.form-section');
         const projectOptionsList = document.querySelector('#td-project-input');
 
