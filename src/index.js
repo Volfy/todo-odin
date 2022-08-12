@@ -1,4 +1,34 @@
 import './style.css';
+import { projectManips} from './manips';
+
+
+// IMPORTS TESTING
+
+console.log(projectManips)
+projectManips.add(1, 'Jogn1', 1000);
+projectManips.add(2, 'Jogn2', 1000);
+projectManips.add(3, 'Jogn3', 1000);
+projectManips.add(4, 'Jogn4', 1000);
+projectManips.add(5, 'Jogn5', 1000);
+projectManips.add(6, 'Jogn6', 1000);
+
+projectManips.add(7, 'nonumber');
+projectManips.add(8, 'blablabla');
+
+projectManips.remove(5);
+projectManips.remove(1);
+
+projectManips.update(6, 22);
+projectManips.update(3, 2000);
+
+
+
+
+
+
+
+
+
 
 const add_new = document.querySelector('.add-new-button');
 const form = document.querySelector('.form-section');
