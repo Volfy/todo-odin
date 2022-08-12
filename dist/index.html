@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="main.css">
-    <title>To-do List</title>
+    <title>Goody To-do's</title>
 </head>
 <body>
 
@@ -119,31 +119,31 @@
     </section>
     <section class="form-section form-open" hidden>
         <div class="form-tabs">
-            <button>Close</button>
-            <button>To-do</button>
-            <button>Project</button>
+            <button id="close-tab">Close</button>
+            <button id="to-do-tab">To-do</button>
+            <button id="project-tab">Project</button>
             <div class="add-todo">
-                <form class="add-todo-form" action="" method="GET">
-                    <label for="title-input">Title</label>
-                    <input type="text" id="title-input">
-                    <label for="decription-input">Description</label>
-                    <input type="text" id="description-input">
-                    <label for="project-input">Project</label>
-                    <input type="text" id="project-input">
-                    <label for="priority-input">Priority</label>
-                    <input type="number" id="priority-input">
-                    <button class="form-submit">Add To-Do</button>
+                <form class="add-todo-form add-form" action="" method="GET">
+                    <label for="td-title-input">Title</label>
+                    <input type="text" id="td-title-input">
+                    <label for="td-decription-input">Description</label>
+                    <input type="text" id="td-description-input">
+                    <label for="td-project-input">Project</label>
+                    <input type="text" id="td-project-input">
+                    <label for="td-priority-input">Priority</label>
+                    <input type="number" id="td-priority-input">
+                    <button id="td-form-submit" class="form-submit">Add To-Do</button>
                 </form>
             </div>
             <div class="add-project" hidden>
-                <form class="add-project-form" action="" method="get">
-                    <label for="title-input">Project Title</label>
-                    <input type="text" id="title-input">
-                    <label for="decription-input">Project Description</label>
-                    <input type="text" id="description-input">
-                    <label for="priority-input">Priority</label>
-                    <input type="number" id="priority-input">
-                    <button class="form-submit">Add Project</button>
+                <form class="add-project-form add-form" action="" method="get">
+                    <label for="pr-title-input">Project Title</label>
+                    <input type="text" id="pr-title-input">
+                    <label for="pr-decription-input">Project Description</label>
+                    <input type="text" id="pr-description-input">
+                    <label for="pr-priority-input">Priority</label>
+                    <input type="number" id="pr-priority-input">
+                    <button id="pr-form-submit" class="form-submit">Add Project</button>
                 </form>
             </div>
         </div>
