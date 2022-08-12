@@ -215,7 +215,7 @@ tr td:nth-child(6) > button:hover {
 }
 .done::after {
     content: "";
-    z-index: 20;
+    z-index: 5;
     height: 2px;
     width: 98%;
     
