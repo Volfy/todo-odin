@@ -23,13 +23,13 @@ const DOMHandler = (() => {
 
     // PROJECT MANIPS
 
+    const updateViewAll = tasks => {
+        const viewAllNumberDiv = document.querySelector('#view-all .project-no');
+        viewAllNumberDiv.textContent = tasks;
+    }
+
     const project = (() => {
         const projectsListElement = document.querySelector('.projects-list');
-    
-        const updateViewAll = tasks => {
-            const viewAllNumberDiv = document.querySelector('#view-all .project-no');
-            viewAllNumberDiv.textContent = tasks;
-        }
     
         const add = (id, name, tasks = 0) => {
             const newItem = document.createElement('li');
@@ -97,7 +97,7 @@ const DOMHandler = (() => {
 
 
 
-    return {project, form};
+    return {updateViewAll, project, form};
 
 })();
 

@@ -20,7 +20,7 @@ DOMHandler.project.remove(1);
 DOMHandler.project.update(6, 22);
 DOMHandler.project.update(3, 2000);
 
-DOMHandler.project.updateViewAll(22);
+DOMHandler.updateViewAll(22);
 
 
 
