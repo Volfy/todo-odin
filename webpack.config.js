@@ -4,6 +4,7 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
   plugins: [new MiniCssExtractPlugin()],
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {

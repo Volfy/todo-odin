@@ -22,15 +22,21 @@ DOMHandler.project.update(3, 2000);
 
 DOMHandler.updateViewAll(22);
 
-DOMHandler.todo.add(1,'Hello','09/09/2020','Jogn1');
-DOMHandler.todo.add(2,'Hello NEw!!','09/09/2020','Jogn3');
-DOMHandler.todo.add(3,'Will not appear hehehe','09/09/2020','Jogn3');
-DOMHandler.todo.add(4,'Blalallala','09/09/2220','Jog333n1');
+const todoMaker = ((id, title, dueDate, projectName) => {return {id, title, dueDate, projectName}});
+
+let todoList = [ 
+    todoMaker(1,'hello','0/09/2020','godoe'),
+    todoMaker(2,'hello2','0/09/2020','godoe'),
+    todoMaker(3,'hello3','0/09/2020','godoe'),
+    todoMaker(4,'hello4','0/09/233020','go4doe'),
+    todoMaker(5,'hello5','0/09/2020','godoe'),
+];
+
+DOMHandler.todo.refreshAll(todoList);
 
 DOMHandler.todo.remove(3);
 
-
-
+DOMHandler.todo.clearAll();
 
 
 

@@ -3,8 +3,8 @@
 // (DONE)Update number of tasks in a project
 // (DONE)Update Options in Form with new projects
 // (DONE)Update View All Tasks List 
+// (DONE)Add To-do, Remove To-do
 
-// Add To-do, Remove To-do
 // clear to-dos?
 // Show Add New Form
 // Tab between to-do and Project form
@@ -22,7 +22,23 @@ const DOMHandler = (() => {
     // TO-DO MANIPS
 
     const todo = (() => {
-        const table = document.querySelector('table tbody');
+        let table = document.querySelector('table tbody');
+
+        const clearAll = () => {
+            const newBody = document.createElement('tbody');
+            table.parentNode.replaceChild(newBody, table);
+            // the node that used to be table is now gone.
+            // refresh it
+            table = newBody;
+        }
+        const refreshAll = todoArray => {
+            clearAll();
+            todoArray.forEach(todoObject => {
+                // destructure the object and IIFE it into add
+                (({id, title, dueDate, projectName}) => 
+                add(id, title, dueDate, projectName))(todoObject);
+            });
+        }
 
         const add = (id, title, dueDate, projectName) => {
             const newRow = table.insertRow();
@@ -69,7 +85,7 @@ const DOMHandler = (() => {
             rowToRemove.remove();
         };
 
-        return {add, remove};
+        return {clearAll, refreshAll, remove};
 
     })();
 
