@@ -1,14 +1,4 @@
 // STORES DOM MANIPULATIONS
-// (DONE)Add Project, Remove Project
-// (DONE)Update number of tasks in a project
-// (DONE)Update Options in Form with new projects
-// (DONE)Update View All Tasks List 
-// (DONE)Add To-do, Remove To-do
-// (DONE)clear to-dos?
-// (DONE)Mark To-do as completed
-// (DONE)Tab between to-do and Project form
-// (DONE)Show Add New Form
-// (DONE)Projects - refreshAll equivalent
 
 const DOMHandler = (() => {
 
