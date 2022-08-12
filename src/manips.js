@@ -7,6 +7,7 @@
 // (DONE)clear to-dos?
 // (DONE)Mark To-do as completed
 
+// Projects - refreshAll equivalent
 // Show Add New Form
 // Tab between to-do and Project form
 // List To-dos and Projects in level of priority?
