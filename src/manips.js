@@ -2,6 +2,8 @@
 // (DONE)Add Project, Remove Project
 // (DONE)Update number of tasks in a project
 // (DONE)Update Options in Form with new projects
+// Update View All Tasks List 
+
 // Add To-do, Remove To-do
 // Show Add New Form
 // Tab between to-do and Project form
