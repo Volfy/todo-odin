@@ -6,14 +6,32 @@
 // (DONE)Add To-do, Remove To-do
 // (DONE)clear to-dos?
 // (DONE)Mark To-do as completed
+// (DONE)Tab between to-do and Project form
+// (DONE)Show Add New Form
 
 // Projects - refreshAll equivalent
-// Show Add New Form
-// Tab between to-do and Project form
+
+
 // List To-dos and Projects in level of priority?
 
 
 const DOMHandler = (() => {
+
+    const init = () => {
+        const addNewBtn = document.querySelector('.add-new-button');
+        const todoBtn = document.querySelector('#to-do-tab');
+        const projectBtn = document.querySelector('#project-tab');
+        const closeBtn = document.querySelector('#close-tab');
+
+        addNewBtn.addEventListener('click', form.show);
+        closeBtn.addEventListener('click', form.show);
+        todoBtn.addEventListener('click', () => {
+            form.switchFormsTo('todo');
+        });
+        projectBtn.addEventListener("click", () => {
+            form.switchFormsTo('project');
+        });
+    };
 
     // TO-DO MANIPS
 
@@ -158,9 +176,31 @@ const DOMHandler = (() => {
     // FORM MANIPS
     
     const form = (() => {
+        const formSection = document.querySelector('.form-section');
         const projectOptionsList = document.querySelector('#td-project-input');
-    
-    
+
+        const show = () => {
+            switchFormsTo('todo');
+            formSection.classList.toggle('form-open');
+        };
+
+        const switchFormsTo = name => {
+            const todoForm = document.querySelector('.add-todo');
+            const projectForm = document.querySelector('.add-project');
+            switch(name) {
+                case 'todo':
+                    todoForm.classList.add('current');
+                    projectForm.classList.remove('current');
+                    break;
+                case 'project':
+                    projectForm.classList.add('current');
+                    todoForm.classList.remove('current');
+                    break;
+                default:
+                    break; 
+            }
+        }
+        
         const addProject = (id, name) => {
             const newOption = document.createElement('option');
             newOption.value = `project-${id}`;
@@ -171,13 +211,13 @@ const DOMHandler = (() => {
             const optionToRemove = document.querySelector(`option[value='project-${id}']`);
             optionToRemove.remove();
         }
-        return {addProject, removeProject};
+        return {addProject, removeProject, show, switchFormsTo};
     })();
 
 
 
 
-    return {todo, updateViewAll, project, form};
+    return {todo, updateViewAll, project, init};
 
 })();
 

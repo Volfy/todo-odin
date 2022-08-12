@@ -4,6 +4,8 @@ import { DOMHandler} from './manips';
 
 // IMPORTS TESTING
 
+DOMHandler.init();
+
 DOMHandler.project.add(1, 'Jogn1', 1000);
 DOMHandler.project.add(2, 'Jogn2', 1000);
 DOMHandler.project.add(3, 'Jogn3', 1000);
@@ -33,46 +35,3 @@ let todoList = [
 ];
 
 DOMHandler.todo.refreshAll(todoList);
-
-
-
-
-
-const add_new = document.querySelector('.add-new-button');
-const form = document.querySelector('.form-section');
-
-const formtodo = document.querySelector('.add-todo');
-const todobtn = document.querySelector('#to-do-tab');
-const formproject = document.querySelector('.add-project');
-const projectbtn = document.querySelector('#project-tab');
-const closebtn = document.querySelector('#close-tab');
-
-
-
-
-// OPEN THE ADD FORM
-add_new.addEventListener("click", () => {
-    form.classList.toggle('form-open')
-    formtodo.classList.add('current');
-});
-
-// TOGGLE BETWEEN TODO AND PROJECT FORMS
-todobtn.addEventListener("click", () => {
-    formproject.classList.remove("current");
-    
-    formtodo.classList.add("current");
-    
-});
-projectbtn.addEventListener("click", () => {
-    formtodo.classList.remove("current");
-    formproject.classList.add("current");
-    
-});
-// CLOSE THE ADD FORM WITHOUT SUBMITTING
-closebtn.addEventListener("click", () => {
-    formproject.classList.remove('current');
-    formtodo.classList.remove('current');
-    form.classList.remove('form-open');
-    
-    
-});
