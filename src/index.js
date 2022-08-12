@@ -1,27 +1,27 @@
 import './style.css';
-import { projectListElementManips} from './manips';
+import { projectListManips} from './manips';
 
 
 // IMPORTS TESTING
 
-console.log(projectListElementManips)
-projectListElementManips.add(1, 'Jogn1', 1000);
-projectListElementManips.add(2, 'Jogn2', 1000);
-projectListElementManips.add(3, 'Jogn3', 1000);
-projectListElementManips.add(4, 'Jogn4', 1000);
-projectListElementManips.add(5, 'Jogn5', 1000);
-projectListElementManips.add(6, 'Jogn6', 1000);
+console.log(projectListManips)
+projectListManips.add(1, 'Jogn1', 1000);
+projectListManips.add(2, 'Jogn2', 1000);
+projectListManips.add(3, 'Jogn3', 1000);
+projectListManips.add(4, 'Jogn4', 1000);
+projectListManips.add(5, 'Jogn5', 1000);
+projectListManips.add(6, 'Jogn6', 1000);
 
-projectListElementManips.add(7, 'nonumber');
-projectListElementManips.add(8, 'blablabla');
+projectListManips.add(7, 'nonumber');
+projectListManips.add(8, 'blablabla');
 
-projectListElementManips.remove(5);
-projectListElementManips.remove(1);
+projectListManips.remove(5);
+projectListManips.remove(1);
 
-projectListElementManips.update(6, 22);
-projectListElementManips.update(3, 2000);
+projectListManips.update(6, 22);
+projectListManips.update(3, 2000);
 
-
+projectListManips.updateViewAll(22);
 
 
 

@@ -16,8 +16,15 @@
 
 // PROJECT MANIPS
 
-const projectListElementManips = (() => {
+const projectListManips = (() => {
     const projectsListElement = document.querySelector('.projects-list');
+
+    const updateViewAll = tasks => {
+        const viewAllNumberDiv = document.querySelector('#view-all .project-no');
+        viewAllNumberDiv.textContent = tasks;
+    }
+
+
 
     const add = (id, name, tasks = 0) => {
         const newItem = document.createElement('li');
@@ -60,7 +67,7 @@ const projectListElementManips = (() => {
         // formManips.addProject(id, name);
     }
 
-    return {add, remove, update}
+    return {add, remove, update, updateViewAll}
 })();
 
 // FORM MANIPS
@@ -89,4 +96,4 @@ const formManips = (() => {
 
 
 
-export {projectListElementManips};
+export {projectListManips};
