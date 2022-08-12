@@ -34,11 +34,6 @@ let todoList = [
 
 DOMHandler.todo.refreshAll(todoList);
 
-DOMHandler.todo.remove(3);
-
-// DOMHandler.todo.clearAll();
-
-
 
 
 
@@ -53,13 +48,7 @@ const projectbtn = document.querySelector('#project-tab');
 const closebtn = document.querySelector('#close-tab');
 
 
-const checks = document.querySelectorAll('tr input');
-// CHANGE TODO TO DONE AND DISPLAY IT DIFFERENTLY
-checks.forEach(chk => {
-    chk.addEventListener('change', 
-    () => document.querySelector(`tr[data-num='${chk.dataset.num}']`)
-                  .classList.toggle('done'));
-});
+
 
 // OPEN THE ADD FORM
 add_new.addEventListener("click", () => {

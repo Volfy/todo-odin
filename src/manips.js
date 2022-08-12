@@ -5,10 +5,10 @@
 // (DONE)Update View All Tasks List 
 // (DONE)Add To-do, Remove To-do
 // (DONE)clear to-dos?
+// (DONE)Mark To-do as completed
 
 // Show Add New Form
 // Tab between to-do and Project form
-// Mark To-do as completed
 // List To-dos and Projects in level of priority?
 
 
@@ -19,13 +19,6 @@ const DOMHandler = (() => {
     const todo = (() => {
         let table = document.querySelector('table tbody');
 
-        const clearAll = () => {
-            const newBody = document.createElement('tbody');
-            table.parentNode.replaceChild(newBody, table);
-            // the node that used to be table is now gone.
-            // refresh it
-            table = newBody;
-        }
         const refreshAll = todoArray => {
             clearAll();
             todoArray.forEach(todoObject => {
@@ -35,6 +28,19 @@ const DOMHandler = (() => {
             });
         }
 
+        const markDone = (id) => 
+            document.querySelector(`tr[data-num='${id}']`)
+                    .classList
+                    .toggle('done');
+
+        const clearAll = () => {
+            const newBody = document.createElement('tbody');
+            table.parentNode.replaceChild(newBody, table);
+            // the node that used to be table is now gone.
+            // so refresh it
+            table = newBody;
+        }
+
         const add = (id, title, dueDate, projectName) => {
             const newRow = table.insertRow();
             newRow.dataset.num = id;
@@ -42,7 +48,13 @@ const DOMHandler = (() => {
             const newChk = newRow.insertCell(0);
             const ChkIn = document.createElement('input');
             ChkIn.type = 'checkbox';
-            ChkIn.dataset.num = id;
+            // Checkbox Event Listener
+            // This should not happen directly,
+            // but markDone should get called by a function
+            // after object state is changed 
+            ChkIn.addEventListener('change', () => {
+                markDone(id);
+            })
             newChk.append(ChkIn);
 
             const newTitle = newRow.insertCell(1);
@@ -56,7 +68,7 @@ const DOMHandler = (() => {
 
             const newEdit = newRow.insertCell(4);
             const EditBtn = document.createElement('button');
-            EditBtn.dataset.num = id;
+            EditBtn.dataset.num = id; // may not even be relevant
             EditBtn.classList.add('edit');
             EditBtn.textContent = "Edit";
             // Edit Event Listener
@@ -65,22 +77,26 @@ const DOMHandler = (() => {
 
             const newRmv = newRow.insertCell(5);
             const RmvBtn = document.createElement('button');
-            RmvBtn.dataset.num = id;
+            RmvBtn.dataset.num = id; // may not even be relevant
             RmvBtn.classList.add('rmv');
             RmvBtn.textContent = "Remove";
+            // Remove Event Listener
             // This should NOT directly call the DOM Manip. Otherwise
             // the underlying To-do object will not be deleted!
-            RmvBtn.addEventListener('click', () => remove(id));
+            // RmvBtn.addEventListener('click', () => remove(id));
 
             newRmv.append(RmvBtn);
 
         };
-        const remove = id => {
+        // Not necessary.
+        const _remove = id => {
             const rowToRemove = document.querySelector(`tr[data-num='${id}']`);
             rowToRemove.remove();
         };
 
-        return {clearAll, refreshAll, remove};
+        // Adding/Removing To-dos from DOM is unnecessary.
+        // We can simply refreshAll.
+        return {refreshAll};
 
     })();
 
