@@ -1,27 +1,26 @@
 import './style.css';
-import { projectListManips} from './manips';
+import { DOMHandler} from './manips';
 
 
 // IMPORTS TESTING
 
-console.log(projectListManips)
-projectListManips.add(1, 'Jogn1', 1000);
-projectListManips.add(2, 'Jogn2', 1000);
-projectListManips.add(3, 'Jogn3', 1000);
-projectListManips.add(4, 'Jogn4', 1000);
-projectListManips.add(5, 'Jogn5', 1000);
-projectListManips.add(6, 'Jogn6', 1000);
+DOMHandler.project.add(1, 'Jogn1', 1000);
+DOMHandler.project.add(2, 'Jogn2', 1000);
+DOMHandler.project.add(3, 'Jogn3', 1000);
+DOMHandler.project.add(4, 'Jogn4', 1000);
+DOMHandler.project.add(5, 'Jogn5', 1000);
+DOMHandler.project.add(6, 'Jogn6', 1000);
 
-projectListManips.add(7, 'nonumber');
-projectListManips.add(8, 'blablabla');
+DOMHandler.project.add(7, 'nonumber');
+DOMHandler.project.add(8, 'blablabla');
 
-projectListManips.remove(5);
-projectListManips.remove(1);
+DOMHandler.project.remove(5);
+DOMHandler.project.remove(1);
 
-projectListManips.update(6, 22);
-projectListManips.update(3, 2000);
+DOMHandler.project.update(6, 22);
+DOMHandler.project.update(3, 2000);
 
-projectListManips.updateViewAll(22);
+DOMHandler.project.updateViewAll(22);
 
 
 
