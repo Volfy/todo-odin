@@ -1,23 +1,8 @@
 // STORES DOM MANIPULATIONS
 
+import { DataHandler } from "./data";
+
 const DOMHandler = (() => {
-
-    const init = () => {
-        const addNewBtn = document.querySelector('.add-new-button');
-        const todoBtn = document.querySelector('#to-do-tab');
-        const projectBtn = document.querySelector('#project-tab');
-        const closeBtn = document.querySelector('#close-tab');
-
-        addNewBtn.addEventListener('click', _form.show);
-        closeBtn.addEventListener('click', _form.show);
-        todoBtn.addEventListener('click', () => {
-            _form.switchFormsTo('todo');
-        });
-        projectBtn.addEventListener("click", () => {
-            _form.switchFormsTo('project');
-        });
-    };
-
     // TO-DO MANIPS
 
     const todo = (() => {
@@ -27,8 +12,8 @@ const DOMHandler = (() => {
             clearAll();
             todoArray.forEach(todoObject => {
                 // destructure the object and IIFE it into add
-                (({id, title, dueDate, projectName}) => 
-                add(id, title, dueDate, projectName))(todoObject);
+                (({id, title, dueDate, projectName, done, projectId}) => 
+                add(id, title, dueDate, projectName, done, projectId))(todoObject);
             });
         }
 
@@ -45,13 +30,24 @@ const DOMHandler = (() => {
             table = newBody;
         }
 
-        const add = (id, title, dueDate, projectName) => {
+        const add = (id, title, dueDate, projectName, done, projectId) => {
             const newRow = table.insertRow();
             newRow.dataset.num = id;
+
+            console.log(id)
+            console.log(title)
+            console.log(dueDate)
+            console.log(projectName)
+            console.log(done)
+            console.log(projectId)
 
             const newChk = newRow.insertCell(0);
             const ChkIn = document.createElement('input');
             ChkIn.type = 'checkbox';
+            if (done) {
+                ChkIn.checked = true;
+                markDone(id);
+            }
             // Checkbox Event Listener
             // This should not happen directly,
             // but markDone should get called by a function
@@ -82,12 +78,17 @@ const DOMHandler = (() => {
             const newRmv = newRow.insertCell(5);
             const RmvBtn = document.createElement('button');
             RmvBtn.dataset.num = id; // may not even be relevant
+            RmvBtn.dataset.projectId = projectId;
             RmvBtn.classList.add('rmv');
             RmvBtn.textContent = "Remove";
             // Remove Event Listener
             // This should NOT directly call the DOM Manip. Otherwise
             // the underlying To-do object will not be deleted!
-            // RmvBtn.addEventListener('click', () => remove(id));
+            RmvBtn.addEventListener('click', () => {
+                DataHandler.todo.remove(projectId, id);
+
+                refreshAll(DataHandler.todo.forDOM(-2));
+            });
 
             newRmv.append(RmvBtn);
 
@@ -116,8 +117,10 @@ const DOMHandler = (() => {
             });
         }
         const clearAll = () => {
+            form.clearProjects();
             const projectListItems = document.querySelectorAll('li.project');
             projectListItems.forEach(proj => proj.remove());
+            
         }
     
         const add = (id, name, tasks) => {
@@ -126,8 +129,8 @@ const DOMHandler = (() => {
             const newDiv = document.createElement('div');
     
             // ID generation should be handled in logic. 
-            newItem.id = `project-${id}`;
-            _form.addProject(id, name);
+            newItem.id = `${id}`;
+            form.addProject(id, name);
     
             newDiv.classList.add('project-no');
             newBtn.classList.add('project');
@@ -145,20 +148,20 @@ const DOMHandler = (() => {
         // I am not sure if these will be relevant later.
 
         // const remove = id => {
-        //     const itemToRemove = document.querySelector(`#project-${id}`);
+        //     const itemToRemove = document.querySelector(`#${id}`);
         //     itemToRemove.remove();
-        //     _form.removeProject(id);
+        //     form.removeProject(id);
         // }
         // const update = (id, tasks) => {
-        //     const numberDiv = document.querySelector(`#project-${id} .project-no`);
+        //     const numberDiv = document.querySelector(`#${id} .project-no`);
         //     numberDiv.textContent = tasks;
             
         // }
     
         // // I am not sure if this is useful or correct.
         // const _updateName = (id, name) => {
-        //     const nameBtn = document.querySelector(`#project-${id} button`);
-        //     const numberDiv = document.querySelector(`#project-${id} .project-no`);
+        //     const nameBtn = document.querySelector(`#${id} button`);
+        //     const numberDiv = document.querySelector(`#${id} .project-no`);
         //     nameBtn.textContent = name;
         //     nameBtn.append(numberDiv);
         //     // formManips.addProject(id, name);
@@ -169,7 +172,7 @@ const DOMHandler = (() => {
     
     // FORM MANIPS
     
-    const _form = (() => {
+    const form = (() => {
         const formSection = document.querySelector('.form-section');
         const projectOptionsList = document.querySelector('#td-project-input');
 
@@ -198,22 +201,22 @@ const DOMHandler = (() => {
         
         const addProject = (id, name) => {
             const newOption = document.createElement('option');
-            newOption.value = `project-${id}`;
+            newOption.value = `${id}`;
             newOption.textContent = name;
             projectOptionsList.append(newOption);
         }
         // Not sure if will be relevant Later
-        // const removeProject = id => {
-        //     const optionToRemove = document.querySelector(`option[value='project-${id}']`);
-        //     optionToRemove.remove();
-        // }
-        return {addProject, show, switchFormsTo};
+        const clearProjects = () => {
+            const optionsToRemove = document.querySelectorAll(`option`);
+            optionsToRemove.forEach(proj => proj.remove())
+        }
+        return {addProject, clearProjects, show, switchFormsTo};
     })();
 
 
 
 
-    return {init, project, todo, updateViewAll};
+    return {project, todo, updateViewAll, form};
 
 })();
 
