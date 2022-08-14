@@ -6,10 +6,13 @@
 // (DONE)organize list by choice/project
 // (DONE)Add,remove todos & projects
 // PRIORITY 21 === DONE
-// make it so that ids are generated automatically.
+// (DONE)make it so that ids are generated automatically.
 
 const DataHandler = (() => {
     let projectList = [];
+
+    let taskIdCount = 0;
+    let projectIdCount = 0;
 
     const sortList = (list) => {
         list.sort((a,b)=>a.priority - b.priority);
@@ -18,9 +21,10 @@ const DataHandler = (() => {
 
 
     const project = (()=>{
-        const add = (id, name, priority) => {
+        const add = (name, priority) => {
             let todoList = [];
-            projectList.push({id,name,priority,todoList})
+            projectList.push({id: projectIdCount,name,priority,todoList})
+            projectIdCount++;
             sortList(projectList);
         }
         const remove = id => {
@@ -43,9 +47,10 @@ const DataHandler = (() => {
             const projectIndex = projectList.indexOf(projectList.filter(proj => proj.id === projectId)[0]);
             return projectList[projectIndex].todoList;
         }
-        const add = (projectId, id, title, dueDate, priority) => {
+        const add = (projectId, title, dueDate, priority) => {
             let currentTodoList = getTodoList(projectId);
-            currentTodoList.push({id, title, dueDate, priority});
+            currentTodoList.push({id: taskIdCount, title, dueDate, priority});
+            taskIdCount++;
             sortList(currentTodoList);
         }
         const remove = (projectId,id) => {
@@ -77,20 +82,17 @@ const DataHandler = (() => {
     return {project, todo};
 })();
 
-DataHandler.project.add(1,'hi',1);
-DataHandler.project.add(2,'h2i',1);
-DataHandler.project.add(3,'hi3',3);
-DataHandler.project.add(4,'hi4',2);
+DataHandler.project.add('hi',1);
+DataHandler.project.add('h2i',1);
+DataHandler.project.add('hi3',3);
+DataHandler.project.add('hi4',2);
 
-DataHandler.todo.add(1, 1,'lol','date',1);
-DataHandler.todo.add(1, 2,'lo2l','date',1);
-DataHandler.todo.add(3, 3,'lo3l','date',1);
-DataHandler.todo.add(1, 4,'lo2l','date',2);
-DataHandler.todo.add(3, 5,'lo3l','date',2);
-DataHandler.todo.add(2, 6,'lo3l','date',4);
-
-// I want to be able to call DataHandler.projectList[x].remove()
-// or DataHandler.projectList[x].todoList[y].remove();
+DataHandler.todo.add(1, 'lol','date',1);
+DataHandler.todo.add(1, 'lo2l','date',1);
+DataHandler.todo.add(3, 'lo3l','date',1);
+DataHandler.todo.add(1, 'lo2l','date',2);
+DataHandler.todo.add(3, 'lo3l','date',2);
+DataHandler.todo.add(2, 'lo3l','date',4);
 
 const lol = () => {
     console.log(DataHandler.todo.allForDOM());
