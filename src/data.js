@@ -18,8 +18,6 @@ const DataHandler = (() => {
         list.sort((a,b)=>a.priority - b.priority);
     }
 
-
-
     const project = (()=>{
         const add = (name, priority) => {
             let todoList = [];
@@ -32,6 +30,12 @@ const DataHandler = (() => {
             projectList.splice(projectIndex,1);
         }
         // edit
+        const edit = (id, name, priority) => {
+            let projectToChange = projectList.filter(proj => proj.id === id)[0]
+            projectToChange.name = name;
+            projectToChange.priority = priority;
+            sortList(projectList);
+        }
         const forDOM = () => {
             let list = [];
             // id, title, number
@@ -40,7 +44,7 @@ const DataHandler = (() => {
             });
             return list;
         }
-        return {add, forDOM, remove};
+        return {add, edit, forDOM, remove};
     })();
     const todo = (()=>{
         const getTodoList = (projectId) => {
@@ -57,6 +61,14 @@ const DataHandler = (() => {
             const currentTodoList = getTodoList(projectId);
             const todoIndex = currentTodoList.indexOf(currentTodoList.filter(td => td.id === id)[0]);
             currentTodoList.splice(todoIndex,1);
+        }
+        const edit = (projectId, id, title, dueDate, priority) => {
+            const currentTodoList = getTodoList(projectId);
+            let taskToChange = currentTodoList.filter(task => task.id === id)[0];
+            taskToChange.title = title;
+            taskToChange.dueDate = dueDate;
+            taskToChange.priority = priority;
+            sortList(currentTodoList);
         }
         const forDOM = (projectId) => {
             const currentTodoList = getTodoList(projectId);
@@ -76,7 +88,7 @@ const DataHandler = (() => {
             projectList.forEach(proj => list.push(forDOM(proj.id)));
             return list.flat(1);
         }
-        return {add, remove, forDOM, allForDOM};
+        return {add, edit, remove, forDOM, allForDOM};
     })();
 
     return {project, todo};
@@ -93,6 +105,10 @@ DataHandler.todo.add(3, 'lo3l','date',1);
 DataHandler.todo.add(1, 'lo2l','date',2);
 DataHandler.todo.add(3, 'lo3l','date',2);
 DataHandler.todo.add(2, 'lo3l','date',4);
+
+DataHandler.project.edit(1,'noo',1);
+DataHandler.todo.edit(1, 0,'chjage','due',1);
+
 
 const lol = () => {
     console.log(DataHandler.todo.allForDOM());
