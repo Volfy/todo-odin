@@ -94,25 +94,5 @@ const DataHandler = (() => {
     return {project, todo};
 })();
 
-DataHandler.project.add('hi',1);
-DataHandler.project.add('h2i',1);
-DataHandler.project.add('hi3',3);
-DataHandler.project.add('hi4',2);
 
-DataHandler.todo.add(1, 'lol','date',1);
-DataHandler.todo.add(1, 'lo2l','date',1);
-DataHandler.todo.add(3, 'lo3l','date',1);
-DataHandler.todo.add(1, 'lo2l','date',2);
-DataHandler.todo.add(3, 'lo3l','date',2);
-DataHandler.todo.add(2, 'lo3l','date',4);
-
-DataHandler.project.edit(1,'noo',1);
-DataHandler.todo.edit(1, 0,'chjage','due',1);
-
-
-const lol = () => {
-    console.log(DataHandler.todo.allForDOM());
-    console.log(DataHandler.project.forDOM());
-    console.log(DataHandler.todo.forDOM(1));};
-
-export {lol};
+export {DataHandler};
