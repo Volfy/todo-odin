@@ -81,8 +81,9 @@
                 <label for="td-due-date-input">Due Date</label>
                 <input type="text" id="td-due-date-input">
                 <label for="td-priority-input">Priority</label>
-                <input type="number" id="td-priority-input">
+                <input type="number" id="td-priority-input" min="0" max="20">
                 <button id="td-form-submit" class="form-submit">Add To-Do</button>
+                <div class="warning-no-projects" hidden>Cannot create To-Do with no available Projects. Please make a project first.</div>
             </form>
         </div>
         <div class="add-project" hidden>
@@ -91,7 +92,7 @@
                 <input type="text" id="pr-title-input">
                 <label for="pr-decription-input">Project Description</label>
                 <input type="text" id="pr-description-input">
-                <label for="pr-priority-input">Priority</label>
+                <label for="pr-priority-input" min="0" max="20">Priority</label>
                 <input type="number" id="pr-priority-input">
                 <button id="pr-form-submit" class="form-submit">Add Project</button>
             </form>
