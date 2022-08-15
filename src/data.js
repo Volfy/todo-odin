@@ -30,6 +30,9 @@ const DataHandler = (() => {
             projectToChange.priority = priority;
             sortList(projectList);
         }
+        const getCount = () => {
+            return projectList.length;
+        }
         const getIdOf = projectName => {
             return projectList.filter(proj => proj.name == projectName).id;
         }
@@ -37,11 +40,13 @@ const DataHandler = (() => {
             let list = [];
             // id, title, number
             projectList.forEach(proj => {
-                list.push({id: proj.id, name: proj.name, tasks: proj.todoList.length});
+                list.push({id: proj.id, name: proj.name, 
+                    tasks: proj.todoList.filter(task => task.priority != 21).length
+                });
             });
             return list;
         }
-        return {add, edit, forDOM, remove, getIdOf};
+        return {add, edit, forDOM, remove, getIdOf, getCount};
     })();
     const todo = (()=>{
         const getTodoList = (projectId) => {
@@ -78,7 +83,6 @@ const DataHandler = (() => {
             let list = [];
             // id, title, dueDate, projectName, done?
             currentTodoList.forEach(task => {
-                console.log(projectId)
                 list.push({
                     id: task.id, title: task.title, dueDate: task.dueDate,
                     projectName: projectList.filter(proj => proj.id === projectId)[0].name,
@@ -91,7 +95,6 @@ const DataHandler = (() => {
         const allForDOM = () => {
             let list = [];
             projectList.forEach(proj => list.push(forDOM(proj.id)));
-            console.log(list.flat(1));
             return list.flat(1);
         }
         return {add, edit, remove, forDOM};

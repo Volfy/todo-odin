@@ -41,7 +41,7 @@ hr {
     --neutral-color: #EDE8ED;
     --neutral-dark-color: #e4e0e4;
     --shadow-color: #26284b;
-    --warning-color: red;
+    --warning-color: rgb(144, 0, 29);
     --submit-color: rgb(5, 165, 5);
 }
 body {
@@ -317,4 +317,6 @@ tr td:nth-child(6) > button:hover {
     
 }
 
-
+.warning-no-projects {
+    color: var(--warning-color);
+}

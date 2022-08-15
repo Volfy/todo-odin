@@ -15,6 +15,7 @@ const DOMHandler = (() => {
                 (({id, title, dueDate, projectName, done, projectId}) => 
                 add(id, title, dueDate, projectName, done, projectId))(todoObject);
             });
+            updateViewAll(DataHandler.todo.forDOM(-2).filter(x => !x.done).length);
         }
 
         const markDone = (id) => 
@@ -34,13 +35,6 @@ const DOMHandler = (() => {
             const newRow = table.insertRow();
             newRow.dataset.num = id;
 
-            console.log(id)
-            console.log(title)
-            console.log(dueDate)
-            console.log(projectName)
-            console.log(done)
-            console.log(projectId)
-
             const newChk = newRow.insertCell(0);
             const ChkIn = document.createElement('input');
             ChkIn.type = 'checkbox';
@@ -53,7 +47,19 @@ const DOMHandler = (() => {
             // but markDone should get called by a function
             // after object state is changed 
             ChkIn.addEventListener('change', () => {
-                markDone(id);
+                if (done === false) {   
+                    done = true;
+                    markDone(id);
+                    DataHandler.todo.edit(projectId, id, title, dueDate, 21);
+                    refreshAll(DataHandler.todo.forDOM(-2));
+                    project.refreshAll(DataHandler.project.forDOM());
+                } else {
+                    done = false;
+                    markDone(id);
+                    DataHandler.todo.edit(projectId, id, title, dueDate, 1);
+                    refreshAll(DataHandler.todo.forDOM(-2));
+                    project.refreshAll(DataHandler.project.forDOM());
+                }
             })
             newChk.append(ChkIn);
 
@@ -72,6 +78,12 @@ const DOMHandler = (() => {
             EditBtn.classList.add('edit');
             EditBtn.textContent = "Edit";
             // Edit Event Listener
+            EditBtn.addEventListener('click', () => {
+                form.showPrefill(title, projectId, dueDate, 1);
+                DataHandler.todo.remove(projectId, id);
+                refreshAll(DataHandler.todo.forDOM(-2));
+                project.refreshAll(DataHandler.project.forDOM());
+            })
             newEdit.append(EditBtn);
 
 
@@ -88,6 +100,7 @@ const DOMHandler = (() => {
                 DataHandler.todo.remove(projectId, id);
 
                 refreshAll(DataHandler.todo.forDOM(-2));
+                project.refreshAll(DataHandler.project.forDOM());
             });
 
             newRmv.append(RmvBtn);
@@ -131,6 +144,8 @@ const DOMHandler = (() => {
             // ID generation should be handled in logic. 
             newItem.id = `${id}`;
             form.addProject(id, name);
+
+            newBtn.addEventListener('click', () => todo.refreshAll(DataHandler.todo.forDOM(id)));
     
             newDiv.classList.add('project-no');
             newBtn.classList.add('project');
@@ -180,6 +195,14 @@ const DOMHandler = (() => {
             switchFormsTo('todo');
             formSection.classList.toggle('form-open');
         };
+        const showPrefill = (title, projectId, dueDate, priority) => {
+            switchFormsTo('todo');
+            formSection.classList.toggle('form-open');
+            document.querySelector('#td-project-input').value = projectId;
+            document.querySelector('#td-title-input').value = title;
+            document.querySelector('#td-due-date-input').value = dueDate;
+            document.querySelector('#td-priority-input').value = priority;
+        }
 
         const switchFormsTo = name => {
             const todoForm = document.querySelector('.add-todo');
@@ -210,7 +233,7 @@ const DOMHandler = (() => {
             const optionsToRemove = document.querySelectorAll(`option`);
             optionsToRemove.forEach(proj => proj.remove())
         }
-        return {addProject, clearProjects, show, switchFormsTo};
+        return {addProject, clearProjects, show, showPrefill, switchFormsTo};
     })();
 
 
